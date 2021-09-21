@@ -7,16 +7,16 @@ public class Cinema {
 
     int total_rows;
     int total_columns;
-    SortedMap<String, Seat> seats = new TreeMap<>();
-//    List<Seat> available_seats = new ArrayList<>();
+    //SortedMap<String, Seat> available_seats = new TreeMap<>();
+    List<Seat> available_seats = new ArrayList<>();
 
     public Cinema(int rows, int columns) {
         this.total_rows = rows;
         this.total_columns = columns;
         for (int i = 1; i <= rows; i++) {
             for (int k = 1; k <= columns; k++) {
-                seats.put((i + ", " + k), new Seat(i, k));
-//                available_seats.add(new Seat(i, k));
+                //available_seats.put((i + ", " + k), new Seat(i, k));
+                available_seats.add(new Seat(i, k));
             }
         }
     }
@@ -37,11 +37,11 @@ public class Cinema {
         this.total_columns = total_columns;
     }
 
-    public SortedMap<String, Seat> getSeats() {
-        return seats;
+    public List<Seat> getAvailable_seats() {
+        return available_seats;
     }
 
-    public void setSeats(SortedMap<String, Seat> seats) {
-        this.seats = seats;
+    public void setAvailable_seats(List<Seat> available_seats) {
+        this.available_seats = available_seats;
     }
 }

@@ -2,13 +2,16 @@ package cinema;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Seat {
+import java.io.StringBufferInputStream;
+
+public class Seat extends Object{
 
     private int row;
     private int column;
     private int price;
     @JsonIgnore
-    private boolean isAvailable;
+    private String seatKey;
+    //private boolean isAvailable;
 
     Seat() {}
 
@@ -16,6 +19,7 @@ public class Seat {
         this.row = row;
         this.column = column;
         this.price = (row <= 4 ? 10 : 8);
+        this.seatKey = (row + ", " + column);
     }
 
 
@@ -44,6 +48,15 @@ public class Seat {
         this.price = price;
     }
 
+    public String getSeatKey() {
+        return seatKey;
+    }
+
+    public void setSeatKey(String seatKey) {
+        this.seatKey = seatKey;
+    }
+
+    /*
     @JsonIgnore
     public boolean isAvailable() {
         return isAvailable;
@@ -53,6 +66,7 @@ public class Seat {
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
+*/
 
 
 
