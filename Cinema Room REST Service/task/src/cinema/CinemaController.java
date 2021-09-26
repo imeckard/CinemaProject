@@ -1,13 +1,10 @@
 package cinema;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class CinemaController {
@@ -20,13 +17,13 @@ public class CinemaController {
     }
 
     @PostMapping("/purchase")
-    public ResponseEntity<Object> purchaseSeat(@RequestBody Request request) {
+    public ResponseEntity<?> purchaseSeat(@RequestBody Request request) {
         int row = request.getRow();
         int column = request.getColumn();
         String requestSeat = (row + ", " + column);
         if (row > myCinema.total_rows || row <= 0 || column > myCinema.total_columns || column <= 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "The number of a row or a column is out of bounds!");
+            return new ResponseEntity<>(Map.of("error", "The number of a row or a column is out of bounds!"),
+                    HttpStatus.BAD_REQUEST);
         }
         for (Seat seat : myCinema.getAvailable_seats()) {
             if (seat.getSeatKey().equals(requestSeat)) {
@@ -35,7 +32,8 @@ public class CinemaController {
                 return new ResponseEntity<>(seat, HttpStatus.OK);
             }
         }
-        return new ResponseEntity<?>(new Map<String, String>);
+        return new ResponseEntity<>(Map.of("error", "The ticket has been already purchased!"),
+                HttpStatus.BAD_REQUEST);
     }
 }
 
