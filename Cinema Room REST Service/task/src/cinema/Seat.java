@@ -1,8 +1,7 @@
 package cinema;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.io.StringBufferInputStream;
+import java.util.UUID;
 
 public class Seat extends Object{
 
@@ -11,7 +10,10 @@ public class Seat extends Object{
     private int price;
     @JsonIgnore
     private String seatKey;
-    //private boolean isAvailable;
+    @JsonIgnore
+    private String token;
+    @JsonIgnore
+    private boolean isAvailable;
 
     Seat() {}
 
@@ -20,6 +22,8 @@ public class Seat extends Object{
         this.column = column;
         this.price = (row <= 4 ? 10 : 8);
         this.seatKey = (row + ", " + column);
+        this.token = UUID.randomUUID().toString();
+        this.isAvailable = true;
     }
 
 
@@ -56,7 +60,15 @@ public class Seat extends Object{
         this.seatKey = seatKey;
     }
 
-    /*
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+
     @JsonIgnore
     public boolean isAvailable() {
         return isAvailable;
@@ -66,8 +78,5 @@ public class Seat extends Object{
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
-*/
-
-
 
 }

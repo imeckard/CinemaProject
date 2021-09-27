@@ -7,7 +7,6 @@ public class Cinema {
 
     int total_rows;
     int total_columns;
-    //SortedMap<String, Seat> available_seats = new TreeMap<>();
     List<Seat> available_seats = new ArrayList<>();
 
     public Cinema(int rows, int columns) {
@@ -15,7 +14,6 @@ public class Cinema {
         this.total_columns = columns;
         for (int i = 1; i <= rows; i++) {
             for (int k = 1; k <= columns; k++) {
-                //available_seats.put((i + ", " + k), new Seat(i, k));
                 available_seats.add(new Seat(i, k));
             }
         }
