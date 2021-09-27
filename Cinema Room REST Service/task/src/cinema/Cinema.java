@@ -42,4 +42,34 @@ public class Cinema {
     public void setAvailable_seats(List<Seat> available_seats) {
         this.available_seats = available_seats;
     }
+
+    public int countAvailableSeats() {
+        int count = 0;
+        for (Seat seat : this.available_seats) {
+            if (seat.isAvailable()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int currentIncome() {
+        int income = 0;
+        for (Seat seat : this.available_seats) {
+            if (!seat.isAvailable()) {
+                income += seat.getPrice();
+            }
+        }
+        return income;
+    }
+
+    public int countPurchasedTickets() {
+        int count = 0;
+        for (Seat seat : this.available_seats) {
+            if (!seat.isAvailable()) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

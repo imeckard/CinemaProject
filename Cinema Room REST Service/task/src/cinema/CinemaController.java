@@ -49,4 +49,14 @@ public class CinemaController {
         return new ResponseEntity<>(Map.of("error", "Wrong token!"),
                 HttpStatus.BAD_REQUEST);
     }
+
+    @PostMapping("/stats")
+    public ResponseEntity<?> getStats(@RequestParam(required = false) String password) {
+        if (password != null && password.equals("super_secret")) {
+            return new ResponseEntity<>(new StatBlock(myCinema), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(Map.of("error", "The password is wrong!"),
+                HttpStatus.UNAUTHORIZED);
+    }
+
 }

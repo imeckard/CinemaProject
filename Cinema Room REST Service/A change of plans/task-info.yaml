@@ -419,34 +419,6 @@ files:
         }
     }
   learner_created: true
-- name: src/cinema/Controller.java
-  visible: true
-  text: |-
-    package cinema;
-
-    import org.springframework.http.*;
-    import org.springframework.web.bind.annotation.*;
-    import org.springframework.web.server.*;
-
-    @RestController
-    public class Controller {
-
-        @GetMapping("/test/{status}")
-        public void getStatus(@PathVariable String status) {
-            switch (status) {
-                case "200":
-                    throw new ResponseStatusException(HttpStatus.OK);
-                case "300":
-                    throw new ResponseStatusException(HttpStatus.MULTIPLE_CHOICES);
-                case "400":
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-                case "500":
-                    throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-    }
-  learner_created: true
 - name: src/cinema/CinemaController.java
   visible: true
   text: |
@@ -529,5 +501,5 @@ feedback_link: https://hyperskill.org/projects/189/stages/947/implement#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: Mon, 27 Sep 2021 01:08:23 UTC
-record: -1
+  time: Mon, 27 Sep 2021 01:34:46 UTC
+record: 3
